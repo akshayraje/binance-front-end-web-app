@@ -84,3 +84,6 @@ a:hover.table-row{
   height: calc(100vh - 230px);
   overflow: scroll;
 }
+.order-book .progress{
+  background: none;
+}

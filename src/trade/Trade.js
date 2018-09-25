@@ -14,7 +14,7 @@ class Trade extends React.Component {
             isLoaded: false
         };
         this.tradesCount = 100;
-        this.streams = ['@ticker','@depth10','@trade'];
+        this.streams = ['@ticker','@depth20','@trade'];
     }
 
     _connectSocketStreams(streams) {
@@ -47,7 +47,7 @@ class Trade extends React.Component {
                     }) 
                 }              
             }
-            if(eventData.stream.endsWith('@depth10')){
+            if(eventData.stream.endsWith('@depth20')){
                 this.props.dispatch({
                     type: 'SET_DEPTH',
                     data: eventData.data
