@@ -1,6 +1,6 @@
 # Binance Front-end using React, Redux 
 
-Order books and trade history viewer web app. Front-End implementation of Binance Websockets and REST APIs using React and Redux. 
+Order books and trade history viewer web app. Front-End implementation of Binance Websockets and REST APIs using React and Redux. Live demo: [https://binance-front-end-web-app.firebaseapp.com/](https://binance-front-end-web-app.firebaseapp.com/)
 
 ### Features:
 
