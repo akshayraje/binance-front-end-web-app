@@ -1,5 +1,4 @@
 import React from 'react'
-import axios from 'axios'
 import { connect } from 'react-redux'
 import Loading from '../common/Loading'
 import DataTable from './DataTable'
@@ -50,6 +49,7 @@ class MarketPairs extends React.Component {
                 type: 'UPDATE_MARKET_PAIRS',
                 data: ticker
             })
+            !this.props.active_market.market && this._handleTabClick('BTC')
             this.setState({
                 isLoaded: true
             })
@@ -68,33 +68,7 @@ class MarketPairs extends React.Component {
     }
 
     componentDidMount() {
-
-        if(!this.state.isLoaded){
-            axios({
-                method: 'get',
-                url: 'https://cors-anywhere.herokuapp.com/https://api.binance.com/api/v1/ticker/24hr'
-            })
-            .then(response => {
-                let ticker = this._getTickerBySymbol(response.data)
-                this.props.dispatch({
-                    type: 'ADD_MARKET_PAIRS',
-                    data: ticker
-                })
-                this._handleTabClick('BTC')
-                this.setState({
-                    isLoaded: true
-                })
-            })
-            .catch(error => {
-                this.setState({
-                    isLoaded: false,
-                    error: error
-                })
-            });
-        }
-
         this._connectSocketStreams(['!ticker@arr'])
-
     }
 
     componentWillUnmount() {
