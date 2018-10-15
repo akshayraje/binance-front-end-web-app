@@ -10,6 +10,7 @@ class MarketPairs extends React.Component {
         this.state = {
             isLoaded: this.props.market_pairs && this.props.active_market.filtered_pairs
         };
+        this._handleTabClick = this._handleTabClick.bind(this);
     }
 
     _getTickerBySymbol(data) {
@@ -29,7 +30,8 @@ class MarketPairs extends React.Component {
         return ticker;
     }
 
-    _handleTabClick(market) {
+    _handleTabClick(e) {
+        let market = e.currentTarget ? e.currentTarget.getAttribute('data-tab') : e;
         this.props.dispatch({
             type: 'SET_ACTIVE_MARKET',
             data: {
@@ -87,16 +89,16 @@ class MarketPairs extends React.Component {
             <React.Fragment>
                 <ul className="nav nav-tabs pt-2">
                     <li className="nav-item">
-                        <a className={this.props.active_market.market === 'BNB' ? 'nav-link active' : 'nav-link'} onClick={this._handleTabClick.bind(this, 'BNB')}>BNB<span className="d-none d-sm-inline"> Markets</span></a>
+                        <a className={this.props.active_market.market === 'BNB' ? 'nav-link active' : 'nav-link'} onClick={this._handleTabClick} data-tab="BNB">BNB<span className="d-none d-sm-inline"> Markets</span></a>
                     </li>
                     <li className="nav-item">
-                        <a className={this.props.active_market.market === 'BTC' ? 'nav-link active' : 'nav-link'} onClick={this._handleTabClick.bind(this, 'BTC')}>BTC<span className="d-none d-sm-inline"> Markets</span></a>
+                        <a className={this.props.active_market.market === 'BTC' ? 'nav-link active' : 'nav-link'} onClick={this._handleTabClick} data-tab="BTC">BTC<span className="d-none d-sm-inline"> Markets</span></a>
                     </li>
                     <li className="nav-item">
-                        <a className={this.props.active_market.market === 'ETH' ? 'nav-link active' : 'nav-link'} onClick={this._handleTabClick.bind(this, 'ETH')}>ETH<span className="d-none d-sm-inline"> Markets</span></a>
+                        <a className={this.props.active_market.market === 'ETH' ? 'nav-link active' : 'nav-link'} onClick={this._handleTabClick} data-tab="ETH">ETH<span className="d-none d-sm-inline"> Markets</span></a>
                     </li>
                     <li className="nav-item">
-                        <a className={this.props.active_market.market === 'USDT' ? 'nav-link active' : 'nav-link'} onClick={this._handleTabClick.bind(this, 'USDT')}>USDT<span className="d-none d-sm-inline"> Markets</span></a>
+                        <a className={this.props.active_market.market === 'USDT' ? 'nav-link active' : 'nav-link'} onClick={this._handleTabClick} data-tab="USDT">USDT<span className="d-none d-sm-inline"> Markets</span></a>
                     </li>    
                 </ul>
                 {this.props.market_pairs && this.props.active_market.filtered_pairs ? <DataTable ticker={this.props.market_pairs} filter={this.props.active_market.filtered_pairs} /> : <Loading />}

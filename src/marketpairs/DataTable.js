@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
 
 const Row = (props) => (
-    <React.Fragment key={props.symbol}>
+    <React.Fragment>
         <div className="d-none d-sm-inline">
             <Link className="row table-row small py-1" to={`trade/${props.symbol}`}>
                 <div className="col">{props.symbol}</div>
@@ -43,10 +43,9 @@ const DataTable = (props) => {
     let numRows = tickerArray.length;
 
     for (var i = 0; i < numRows; i++) {
-        let data = tickerArray[i];
         if( props.filter.includes(tickerArray[i].symbol) ){
             rows.push(
-                <Row {...data} />
+                <Row {...tickerArray[i]} key={tickerArray[i].symbol} />
             )
         }
     }
