@@ -1,8 +1,8 @@
 import React from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import AppHeader from './common/AppHeader'
-import MarketPairs from './marketpairs/Index'
-import Trade from './trade/Index'
+import MarketPairs from './marketpairs'
+import Trade from './trade'
 
 const App = () => (
   <Router>
